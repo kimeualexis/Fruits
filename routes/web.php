@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/fruits/create', 'FruitController@store');
+Route::get('/fruits/create', 'FruitController@create');
+Route::get('fruits', 'FruitController@index');
