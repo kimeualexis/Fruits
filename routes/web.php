@@ -18,3 +18,6 @@ Route::get('/', function () {
 Route::post('/fruits/create', 'FruitController@store');
 Route::get('/fruits/create', 'FruitController@create');
 Route::get('fruits', 'FruitController@index');
+Route::get('/fruits/edit/{id}', 'FruitController@edit');
+Route::post('fruits/edit/{id}', 'FruitController@update');
+Route::delete('fruits/{id}', 'FruitController@destroy');

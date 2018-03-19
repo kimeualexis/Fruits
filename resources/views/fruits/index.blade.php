@@ -16,20 +16,32 @@
     <table class="table table-striped">
     <thead>
       <tr>
-
+       <th>ID</td>
         <th>Name</th>
         <th>Quantity</th>
         <th>Price</th>
         <th>Discount</th>
+        <th class="text-center">Action</th>
+
       </tr>
     </thead>
     <tbody>
       @foreach($fruits as $fruit)
       <tr>
+        <td>{{$fruit['id']}}</td>
         <td>{{$fruit['fruit_name']}}</td>
         <td>{{$fruit['quantity']}}</td>
         <td>{{$fruit['price']}}</td>
         <td>{{$fruit['discount']}}</td>
+        <td> <a href="{{action('FruitController@edit', $fruit['id'])}}" class="btn btn-warning">Edit</a></td>
+<td>
+        <form method="post" action="{{action('FruitController@destroy', $fruit['id'])}}">
+          <input type = "hidden" name = "_token" value = " {{ csrf_token() }} " />
+
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+</td>
       </tr>
       @endforeach
     </tbody>

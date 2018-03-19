@@ -37,9 +37,6 @@ class FruitController extends Controller
      */
     public function store(Request $request)
     {
-
-
-
       $validator = Validator::make($request->all(), [
 
         'fruit_name' => 'required',
@@ -54,18 +51,59 @@ class FruitController extends Controller
            ->withErrors($validator)
            ->withInput();
       }
-
   $fruit = new Fruit();
-
   $fruit -> fruit_name = $request->get("fruit_name");
   $fruit -> quantity = $request->get("quantity");
   $fruit -> price = $request->get("price");
   $fruit -> discount = $request->get("discount");
 
-
   $fruit->save();
-
   return redirect('fruits');
     }
 
+
+
+    public function edit($id){
+      $fruit = Fruit::find($id);
+      return view('fruits.edit', compact('fruit', 'id'));
+    }
+
+
+public function update(Request $request, $id){
+
+    $fruit = Fruit::find($id);
+
+    $validator = Validator::make($request->all(), [
+
+        'fruit_name' => 'required',
+        'quantity' => 'required',
+        'price' => 'required',
+        'discount' => 'required'
+
+    ]);
+
+    if($validator->fails()){
+        return redirect('fruits/edit')
+            ->withErrors($validator)
+            ->withInput();
+    }
+
+        $fruit->fruit_name = $request->get("fruit_name");
+        $fruit->quantity = $request->get("quantity");
+        $fruit->price = $request->get("price");
+        $fruit->discount = $request->get("discount");
+
+        $fruit->save();
+
+        return redirect('fruits')->with('Success', 'Fruit Updated!!');
+  
+}
+
+public function destroy($id){
+    $fruit = Fruit::find($id);
+    $fruit->delete();
+
+    return redirect('fruits')->with('Success', 'Fruit Deleted!!');
+
+}
 }

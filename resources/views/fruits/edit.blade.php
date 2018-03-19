@@ -7,24 +7,15 @@
   </head>
   <body>
     <div class="container">
-      <h2>Edit A Fruit:</h2><br  />
-      @if ($errors->any())
-      <div class="alert alert-danger">
-          <ul>
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-              @endforeach
-          </ul>
-      </div><br />
-      @endif
+      <h2 class="text-center">Edit A Fruit:</h2><br  />
+
       <form method="post" action="{{action('FruitController@update', $id)}}">
-        {{csrf_field()}}
-        <input name="_method" type="hidden" value="PATCH">
+        <input type = "hidden" name = "_token" value = " {{ csrf_token() }} " />
         <div class="row">
           <div class="col-md-4"></div>
           <div class="form-group col-md-4">
             <label for="name">Name:</label>
-            <input type="text" class="form-control" name="name" value="{{$fruit->name}}">
+            <input type="text" class="form-control" name="fruit_name" value="{{$fruit->fruit_name}}">
           </div>
         </div>
 
@@ -32,7 +23,7 @@
           <div class="col-md-4"></div>
           <div class="form-group col-md-4">
             <label for="name">Quantity:</label>
-            <input type="text" class="form-control" name="name" value="{{$fruit->quantity}}">
+            <input type="text" class="form-control" name="quantity" value="{{$fruit->quantity}}">
           </div>
         </div>
 
@@ -46,7 +37,7 @@
                 <div class="col-md-4"></div>
                 <div class="form-group col-md-4">
                   <label for="name">Discount:</label>
-                  <input type="text" class="form-control" name="name" value="{{$fruit->discount}}">
+                  <input type="text" class="form-control" name="discount" value="{{$fruit->discount}}">
                 </div>
               </div>
 
