@@ -21,3 +21,4 @@ Route::get('fruits', 'FruitController@index');
 Route::get('/fruits/edit/{id}', 'FruitController@edit');
 Route::post('fruits/edit/{id}', 'FruitController@update');
 Route::delete('fruits/{id}', 'FruitController@destroy');
+Route::get('/fruits/show/{id}', 'FruitController@show');

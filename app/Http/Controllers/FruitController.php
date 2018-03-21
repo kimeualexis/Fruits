@@ -106,4 +106,11 @@ public function destroy($id){
     return redirect('fruits')->with('Success', 'Fruit Deleted!!');
 
 }
+
+public function show($id){
+    $fruit = Fruit::find($id);
+
+    return view('fruits.show', compact('fruit', 'id'));
+}
+
 }

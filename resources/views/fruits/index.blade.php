@@ -33,7 +33,9 @@
         <td>{{$fruit['quantity']}}</td>
         <td>{{$fruit['price']}}</td>
         <td>{{$fruit['discount']}}</td>
-        <td> <a href="{{action('FruitController@edit', $fruit['id'])}}" class="btn btn-warning">Edit</a></td>
+          <td> <a href="{{action('FruitController@show', $fruit['id'])}}" class="btn btn-success">View</a></td>
+
+          <td> <a href="{{action('FruitController@edit', $fruit['id'])}}" class="btn btn-warning">Edit</a></td>
 <td>
         <form method="post" action="{{action('FruitController@destroy', $fruit['id'])}}">
           <input type = "hidden" name = "_token" value = " {{ csrf_token() }} " />
